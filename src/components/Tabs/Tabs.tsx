@@ -1,48 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { MockCategories, ICategory } from "@/data/restaurant";
+import { useDispatch } from "react-redux";
+import { setCategory } from "../../features/counter/categorySlice";
 
 export default function Tabs() {
+  const [open, setOpen] = useState("");
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const dispatch = useDispatch();
+
+  const handleTabOpen = (tabCategory: ICategory) => {
+    setOpen(tabCategory.name);
+    dispatch(setCategory(tabCategory));
+  };
+
+  useEffect(() => {
+    // setDishes(MockRestaurants[0].dishes);
+    setCategories(MockCategories);
+    console.log(MockCategories);
+  }, [categories]);
+
   return (
-    <div className="flex flex-row justify-center items-center text-2xl text-center font-medium  text-gray-500  dark:text-gray-400 dark:border-gray-700">
-      <ul className="flex flex-wrap -mb-px">
-        <li className="me-2">
-          <a
-            href="#"
-            className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+    <div className="flex flex-row justify-center items-center mt-10">
+      {categories.map((category, index) => {
+        return (
+          <div
+            key={index}
+            // className="text-gray-300 text-2xl text-center font-medium w-64 "
+            className={cn(
+              "inline-block p-4 text-white  border-white active text-center text-2xl font-medium font-belleza w-80 ",
+              open === category.name ? "border-b-4" : ""
+            )}
+            onClick={() => handleTabOpen(category)}
           >
-            Appetizer
-          </a>
-        </li>
-        <li className="me-2">
-          <a
-            href="#"
-            className="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500"
-            aria-current="page"
-          >
-            Main Dishes
-          </a>
-        </li>
-        <li className="me-2">
-          <a
-            href="#"
-            className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-          >
-            Specials
-          </a>
-        </li>
-        <li className="me-2">
-          <a
-            href="#"
-            className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-          >
-            Vegetarion Alternatives
-          </a>
-        </li>
-        <li>
-          <a className="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">
-            Drink & Wine
-          </a>
-        </li>
-      </ul>
+            <div>{category.name}</div>
+            <div>{category.name_esp}</div>
+            {/* <a
+                className={cn(
+                  "inline-block p-4 text-white  border-white rounded-t-lg active",
+                  open === category.name ? "border-b-2" : ""
+                )}
+              >
+                {category.name + " / " + category.name_esp}
+              </a> */}
+          </div>
+        );
+      })}
     </div>
   );
 }

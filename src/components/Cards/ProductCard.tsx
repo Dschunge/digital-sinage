@@ -35,15 +35,7 @@ export default function ProductCard() {
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi
           harum tempore cupiditate asperiores provident, itaque, quo ex iusto
-          rerum voluptatum delectus corporis quisquam maxime a ipsam nisi
-          sapiente qui optio! Dignissimos harum quod culpa officiis suscipit
-          soluta labore! Expedita quas, nesciunt similique autem, sunt,
-          doloribus pariatur maxime qui sint id enim. Placeat, maxime labore.
-          Dolores ex provident ipsa impedit, omnis magni earum. Sed fuga ex
-          ducimus consequatur corporis, architecto nesciunt vitae ipsum
-          consequuntur perspiciatis nulla esse voluptatem quos dolorum delectus
-          similique eum vero in est velit quasi pariatur blanditiis incidunt
-          quam.
+          rerum voluptatum delectus corporis quisquam maxime a ipsam nisi quam.
         </p>
       </section>
     </div>

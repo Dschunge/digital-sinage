@@ -16,9 +16,9 @@ header a {
 }
 /* carousel */
 .carousel {
-  height: 100vh;
-  margin-top: 0px;
-  width: 100vw;
+  height: 30vhc; /* 100vh */
+  margin-top: px;
+  width: 100vw; /* 100vh */
   overflow: hidden;
   position: relative;
 }
@@ -51,9 +51,9 @@ header a {
 }
 .carousel .list .item .title,
 .carousel .list .item .topic {
-  font-size: 5em;
+  font-size: 4em; /* 5em */
   font-weight: bold;
-  line-height: 1.3em;
+  line-height: 1em; /* 1.3em */
 }
 .carousel .list .item .topic {
   color: #f1683a;
@@ -81,15 +81,15 @@ header a {
 .thumbnail {
   position: absolute;
   bottom: 50px;
-  left: 50%;
+  left: 35%; /* 50% */
   width: max-content;
-  z-index: 100;
+  z-index: 10;
   display: flex;
   gap: 20px;
 }
 .thumbnail .item {
   width: 150px;
-  height: 220px;
+  height: 120px; /* 220px */
   flex-shrink: 0;
   position: relative;
 }
@@ -295,6 +295,6 @@ header a {
     padding-right: 0;
   }
   .carousel .list .item .content .title {
-    font-size: 30px;
+    font-size: 20px;
   }
 }

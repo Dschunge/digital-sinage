@@ -10,7 +10,7 @@ export interface ISliderItem {
 export const sliders: ISliderItem[] = [
   {
     id: 1,
-    title: "That's hot",
+    title: "That's  hot",
     titlesmall: "Exclusive",
     subtitle: "Best steaks in Tamarindo",
     description:
