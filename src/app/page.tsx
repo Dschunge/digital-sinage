@@ -14,11 +14,19 @@ import ProductHero from "@/components/ProductHero/ProductHero";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { cn } from "@/lib/utils";
+import StartHero from "@/components/ProductHero/StartHero";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 export default function Home() {
   const catagory = useSelector((state: RootState) => state.category.catagory);
   const [dishes, setDishes] = useState<IDish[]>([]);
   const [width, height] = useWindowSize();
+  const [isPending, setPending] = useState(false);
+  const router = useRouter();
+  const [isTransitionStarted, startTransition] = useTransition();
+
+  const isMutating = isPending || isTransitionStarted;
 
   console.log("catagory: ", catagory);
 
@@ -26,15 +34,24 @@ export default function Home() {
     return dishes.filter((dish) => dish.category === category);
   };
 
+  const handleRefresh = () => {
+    // Trigger page refresh
+    console.log("handleRefresh");
+    // alert("hola");
+    setPending(true);
+    // update server data here
+    // redirect.push("#/");
+    router.replace("/");
+    // then, start a transition
+    // startTransition(router.refresh);
+
+    setPending(false);
+  };
+
   useEffect(() => {
     // setRestaurants(MockRestaurants);
     setDishes(MockRestaurants[0].dishes);
   }, [dishes]);
-
-  // useEffect(() => {
-  //   // setRestaurants(MockRestaurants);
-  //   setDishes(MockRestaurants[0].dishes);
-  // }, [dishes]);
 
   const filtereddishes = filterByCategory(catagory.name, dishes);
   console.log(filtereddishes);
@@ -42,37 +59,26 @@ export default function Home() {
   return (
     <>
       {/* <ModalMenuItem open={isOpen} onClose={() => setIsOpen(false)} /> */}
-      <div className="flex-row items-center justify-center m-4 border-4 rounded-xl border-white">
-        {/* <Slider /> */}
-        {/* <Brands />
-        <MarqueeFramerMotion /> */}
-        <ProductHero />
-
+      <div className="flex-row items-center justify-center w-screen">
+        {/* <div className="mt-10 text-2x text-white">
+          {width} / {height}
+        </div> */}
+        {/* {catagory.id === 0 ? <StartHero /> : <ProductHero />} */}
+        <StartHero />
         <div
           className={cn(
-            "relative text-8xl text-center text-white mt-32",
+            "relative text-8xl text-center text-white mt-20",
             "font-beLoveYaLikeASister"
           )}
+          onClick={handleRefresh}
         >
           Menu
         </div>
-
-        {/* <div>
-          <span>{width}</span>
-          <span>{height}</span>
-        </div> */}
-        {/* <Marquee /> */}
         <Tabs />
         {/* <Tab /> */}
         <div className="grid grid-cols-3 grid-rows-6 gap-4 mx-6">
           {filtereddishes.map((dish) => {
-            return (
-              <MenuItem
-                key={dish.id}
-                dish={dish}
-                // onClick={() => setIsOpen(true)}
-              />
-            );
+            return <MenuItem key={dish.id} dish={dish} />;
           })}
         </div>
       </div>

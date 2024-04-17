@@ -61,14 +61,26 @@ export default function RootLayout({
         //   fontSans.variable
         // )}
 
+        // className={cn(
+        //   "antialiased bg-[url('/background-chalk1.png')] h-px[3890px] mb-44 bg-cover bg-no-repeat  overflow-hidden no-scrollbar",
+        //   beLoveYaLikeASister.variable,
+        //   crimson.variable,
+        //   belezza.variable
+        // )}
+
         className={cn(
-          "antialiased bg-[url('/background-chalk1.png')] h-screen bg-cover bg-no-repeat  overflow-y-scroll no-scrollbar",
+          "fixed h-[3840px] max-h-full w-[2160px]  max-w-full bottom-0 overflow-hidden no-scrollbar bg-white border-0 rounded-xl border-white antialiased bg-[url('/background-chalk1.png')] bg-cover bg-no-repeat",
           beLoveYaLikeASister.variable,
           crimson.variable,
           belezza.variable
         )}
       >
         <Provider store={store}>{children}</Provider>
+        {/* <Provider store={store}> */}
+        {/* <div className="text-6xl m-4 text-black flex flex-col items-stretch justify-self-auto">
+            Hallo1
+          </div> */}
+        {/* </Provider> */}
       </body>
     </html>
   );
